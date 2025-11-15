@@ -1,9 +1,6 @@
 // 表單處理邏輯
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('weddingForm');
-    const hasCompanionRadios = document.querySelectorAll('input[name="hasCompanion"]');
-    const guestCountGroup = document.getElementById('guestCountGroup');
-    const guestCountSelect = document.getElementById('guestCount');
     const successMessage = document.getElementById('successMessage');
     const scrollTriggers = document.querySelectorAll('[data-scroll-to]');
     const countdownTargets = {
@@ -13,19 +10,95 @@ document.addEventListener('DOMContentLoaded', function() {
         seconds: document.getElementById('seconds'),
     };
 
-    // 根據是否攜伴顯示/隱藏參加人數欄位
-    hasCompanionRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                guestCountGroup.style.display = 'block';
-                guestCountSelect.setAttribute('required', 'required');
-            } else {
-                guestCountGroup.style.display = 'none';
-                guestCountSelect.removeAttribute('required');
-                guestCountSelect.value = '';
-            }
+    // 背景音樂控制
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicPrompt = document.getElementById('musicPrompt');
+    const playMusicBtn = document.getElementById('playMusicBtn');
+    const skipMusicBtn = document.getElementById('skipMusicBtn');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = document.getElementById('musicIcon');
+    let musicEnabled = false;
+
+    // 檢查是否已經詢問過（使用 localStorage）
+    const musicPromptShown = localStorage.getItem('musicPromptShown');
+    
+    // 如果還沒詢問過，顯示詢問對話框
+    if (!musicPromptShown && backgroundMusic) {
+        // 延遲一點顯示，讓頁面先載入
+        setTimeout(() => {
+            musicPrompt.style.display = 'flex';
+        }, 500);
+    }
+
+    // 播放音樂
+    function playMusic() {
+        if (backgroundMusic) {
+            backgroundMusic.volume = 0.3; // 設定音量為 30%
+            backgroundMusic.play().then(() => {
+                musicEnabled = true;
+                musicToggle.style.display = 'flex';
+                updateMusicIcon();
+            }).catch(error => {
+                console.log('音樂播放失敗:', error);
+            });
+        }
+    }
+
+    // 暫停音樂
+    function pauseMusic() {
+        if (backgroundMusic) {
+            backgroundMusic.pause();
+            musicEnabled = false;
+            updateMusicIcon();
+        }
+    }
+
+    // 切換音樂播放/暫停
+    function toggleMusic() {
+        if (backgroundMusic.paused) {
+            playMusic();
+        } else {
+            pauseMusic();
+        }
+    }
+
+    // 更新音樂圖示
+    function updateMusicIcon() {
+        if (musicIcon) {
+            musicIcon.textContent = backgroundMusic && !backgroundMusic.paused ? '🔊' : '🔇';
+        }
+    }
+
+    // 播放按鈕事件
+    if (playMusicBtn) {
+        playMusicBtn.addEventListener('click', function() {
+            musicPrompt.style.display = 'none';
+            localStorage.setItem('musicPromptShown', 'true');
+            playMusic();
         });
-    });
+    }
+
+    // 跳過按鈕事件
+    if (skipMusicBtn) {
+        skipMusicBtn.addEventListener('click', function() {
+            musicPrompt.style.display = 'none';
+            localStorage.setItem('musicPromptShown', 'true');
+            musicToggle.style.display = 'flex'; // 仍然顯示控制按鈕，讓用戶之後可以開啟
+            updateMusicIcon();
+        });
+    }
+
+    // 音樂控制按鈕事件
+    if (musicToggle) {
+        musicToggle.addEventListener('click', toggleMusic);
+    }
+
+    // 當音樂結束時更新圖示（雖然有 loop，但以防萬一）
+    if (backgroundMusic) {
+        backgroundMusic.addEventListener('ended', updateMusicIcon);
+        backgroundMusic.addEventListener('play', updateMusicIcon);
+        backgroundMusic.addEventListener('pause', updateMusicIcon);
+    }
 
     // 表單提交處理
     form.addEventListener('submit', function(e) {
@@ -37,15 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // 處理複選框數據 - 將多個選項組合成字符串
-        const dietaryChecked = Array.from(document.querySelectorAll('input[name="dietary"]:checked')).map(cb => {
-            const labels = {
-                'vegetarian': '素食',
-                'vegan': '全素',
-                'allergy': '過敏'
-            };
-            return labels[cb.value] || cb.value;
-        });
+        // 處理飲食需求（單選）
+        const dietaryChecked = document.querySelector('input[name="dietary"]:checked');
+        const dietaryLabels = {
+            'none': '無',
+            'vegetarian': '素食',
+            'special': '特殊需求'
+        };
         
         const optionalActivitiesChecked = Array.from(document.querySelectorAll('input[name="optionalActivities"]:checked')).map(cb => {
             const labels = {
@@ -65,21 +136,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // 為 Formspree 添加格式化的數據
-        if (dietaryChecked.length > 0) {
-            const dietaryInput = document.createElement('input');
-            dietaryInput.type = 'hidden';
-            dietaryInput.name = 'dietary';
-            dietaryInput.value = dietaryChecked.join('、');
-            form.appendChild(dietaryInput);
-        } else {
-            // 即使沒有選擇，也添加空值
-            const dietaryInput = document.createElement('input');
-            dietaryInput.type = 'hidden';
-            dietaryInput.name = 'dietary';
-            dietaryInput.value = '';
-            form.appendChild(dietaryInput);
-        }
+        // 為 Formspree 添加格式化的飲食需求數據
+        const dietaryInput = document.createElement('input');
+        dietaryInput.type = 'hidden';
+        dietaryInput.name = 'dietary';
+        dietaryInput.value = dietaryChecked ? dietaryLabels[dietaryChecked.value] || dietaryChecked.value : '無';
+        form.appendChild(dietaryInput);
 
         if (optionalActivitiesChecked.length > 0) {
             const activitiesInput = document.createElement('input');
@@ -167,8 +229,6 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('reset', function() {
         successMessage.style.display = 'none';
         form.style.display = 'block';
-        guestCountGroup.style.display = 'none';
-        guestCountSelect.removeAttribute('required');
     });
 
     // 平滑滑動效果
@@ -308,11 +368,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!hasCompanion) {
             alert('請選擇是否攜伴');
-            return false;
-        }
-
-        if (hasCompanion.value === 'yes' && !guestCountSelect.value) {
-            alert('請選擇參加人數');
             return false;
         }
 

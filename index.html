@@ -50,7 +50,7 @@
                         <div class="schedule-item schedule-item-sub">
                             <div class="schedule-col day-col"></div>
                             <div class="schedule-col time-col"></div>
-                            <div class="schedule-col event-col">(可選自費活動：義大利料理課 🍝、酒莊品酒 🍷 etc.)</div>
+                            <div class="schedule-col event-col">(可選自費活動：義式料理課 🍝、酒莊品酒 🍷 etc.)</div>
                         </div>
                         <div class="schedule-item">
                             <div class="schedule-col day-col"></div>
@@ -107,8 +107,8 @@
             <div class="section-content info-grid">
                 <div class="map-info">
                     <p class="section-eyebrow">LOCATION</p>
-                    <h2>Chianti, Tuscany</h2>
-                    <p class="villa-description">Villa 位於 Chianti 地區，是一棟建於 16 世紀<br>的建築，坐落在酒莊的葡萄園正中央</p>
+                    <h2> 🇮🇹 Chianti, Tuscany</h2>
+                    <p class="villa-description">Villa Pian De' Noci 位於 Chianti 地區，是一棟建於 16 世紀<br>的建築，坐落在酒莊的葡萄園正中央 <a href="https://maps.app.goo.gl/dMQLhsgmh8hh2HePA?g_st=il" target="_blank" rel="noopener noreferrer" class="map-link"> (查看 Google Map）</a></p>
                     <ul>
                         <li>從佛羅倫斯出發，車程約 30 分鐘</li>
                         <li>建議租車前往</li>
@@ -203,17 +203,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" id="guestCountGroup" style="display: none;">
-                                <label for="guestCount">參加人數（包含自己） <span class="required">*</span></label>
-                                <select id="guestCount" name="guestCount">
-                                    <option value="">請選擇人數</option>
-                                    <option value="2">2 人</option>
-                                    <option value="3">3 人</option>
-                                    <option value="4">4 人</option>
-                                    <option value="5">5 人以上</option>
-                                </select>
-                            </div>
-
                             <div class="form-group">
                                 <label>是否與我們同住 Villa <span class="required">*</span></label>
                                 <div class="radio-group">
@@ -236,21 +225,21 @@
                             
                             <div class="form-group">
                                 <label for="dietary">飲食需求</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="dietary" value="vegetarian">
-                                        <span class="checkbox-custom"></span>
-                                        <span class="checkbox-text">素食</span>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="dietary" value="none">
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">無</span>
                                     </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="dietary" value="vegan">
-                                        <span class="checkbox-custom"></span>
-                                        <span class="checkbox-text">全素</span>
+                                    <label class="radio-label">
+                                        <input type="radio" name="dietary" value="vegetarian">
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">素食</span>
                                     </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="dietary" value="allergy">
-                                        <span class="checkbox-custom"></span>
-                                        <span class="checkbox-text">過敏（請在備註中說明）</span>
+                                    <label class="radio-label">
+                                        <input type="radio" name="dietary" value="special">
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">特殊需求</span>
                                     </label>
                                 </div>
                             </div>
@@ -314,9 +303,32 @@
     </main>
 
     <footer>
-        <p>© 2025 Natasha & Leo Wedding</p>
+        <p>© 2026 Tuscany Retreat with Nat & Leo</p>
         <button class="btn-link" data-scroll-to="#home">回到頂部 ↑</button>
     </footer>
+
+    <!-- 背景音樂 -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="Age of Innocence.mp3" type="audio/mpeg">
+        您的瀏覽器不支援音訊播放
+    </audio>
+
+    <!-- 音樂播放詢問對話框 -->
+    <div id="musicPrompt" class="music-prompt" style="display: none;">
+        <div class="music-prompt-content">
+            <h3>🎵 背景音樂</h3>
+            <p>是否要播放背景音樂？</p>
+            <div class="music-prompt-buttons">
+                <button id="playMusicBtn" class="btn btn-primary">播放</button>
+                <button id="skipMusicBtn" class="btn btn-secondary">跳過</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音樂控制按鈕 -->
+    <button id="musicToggle" class="music-control-btn" style="display: none;" aria-label="音樂開關">
+        <span id="musicIcon">🔊</span>
+    </button>
 
     <script src="script.js"></script>
 </body>
