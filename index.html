@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜帖回覆表單</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-eyebrow">2026.05.18-05.20 · Chianti, Tuscany</p>
+            <h1>Natasha & Leo</h1>
+            <p class="hero-text">
+                在托斯卡尼色調的暖陽下，
+                我們邀請您與我們一起迎接人生新的篇章，
+                讓故事隨著滑動慢慢展開。
+            </p>
+            <div class="hero-actions">
+                <button class="btn-link" data-scroll-to=".timeline-section">Start the Story ↓</button>
+                <a class="btn btn-primary" href="#rsvp">立即回覆</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section timeline-section">
+            <div class="section-content schedule-container">
+                <div class="schedule-header">
+                    <p class="section-eyebrow">SCHEDULE</p>
+                    <h2>活動時程</h2>
+                </div>
+                <div class="schedule-days">
+                    <div class="day-card">
+                        <div class="schedule-item">
+                            <div class="schedule-col day-col">Day 1</div>
+                            <div class="schedule-col time-col">17:00-18:00</div>
+                            <div class="schedule-col event-col">報到與入住</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-col day-col"></div>
+                            <div class="schedule-col time-col">19:30-22:00</div>
+                            <div class="schedule-col event-col">Pizza Party</div>
+                        </div>
+                    </div>
+                    <div class="day-card">
+                        <div class="schedule-item">
+                            <div class="schedule-col day-col">Day 2</div>
+                            <div class="schedule-col time-col">9:00-17:00</div>
+                            <div class="schedule-col event-col">自由時間 </div>
+                        </div>
+                        <div class="schedule-item schedule-item-sub">
+                            <div class="schedule-col day-col"></div>
+                            <div class="schedule-col time-col"></div>
+                            <div class="schedule-col event-col">(可選自費活動：義大利料理課 🍝、酒莊品酒 🍷 etc.)</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-col day-col"></div>
+                            <div class="schedule-col time-col">19:30-22:00</div>
+                            <div class="schedule-col event-col">戶外晚宴</div>
+                        </div>
+                    </div>
+                    <div class="day-card">
+                        <div class="schedule-item">
+                            <div class="schedule-col day-col">Day 3</div>
+                            <div class="schedule-col time-col">~10:00</div>
+                            <div class="schedule-col event-col">開心退房</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section gallery-section">
+            <div class="section-content">
+                <p class="section-eyebrow">Our Moments</p>
+                <h2>婚紗花絮</h2>
+                <p>滑動瀏覽幾張我們最喜歡的照片，與我們一起走過美好的旅程。</p>
+
+                <div class="gallery">
+                    <button class="gallery-btn prev" aria-label="上一張照片">
+                        <span>‹</span>
+                    </button>
+                    <div class="gallery-track-wrapper">
+                        <div class="gallery-track">
+                            <figure class="gallery-card">
+                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80" alt="托斯卡尼鄉村風光">
+                                <figcaption>經典托斯卡尼鄉村風光</figcaption>
+                            </figure>
+                            <figure class="gallery-card">
+                                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80" alt="托斯卡尼葡萄園">
+                                <figcaption>基安蒂葡萄園美景</figcaption>
+                            </figure>
+                            <figure class="gallery-card">
+                                <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?auto=format&fit=crop&w=1200&q=80" alt="托斯卡尼山丘">
+                                <figcaption>托斯卡尼起伏的山丘</figcaption>
+                            </figure>
+                            <figure class="gallery-card">
+                                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" alt="托斯卡尼橄欖樹">
+                                <figcaption>橄欖樹林與鄉村小屋</figcaption>
+                            </figure>
+                            <figure class="gallery-card">
+                                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80" alt="托斯卡尼夕陽">
+                                <figcaption>托斯卡尼金色夕陽</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <button class="gallery-btn next" aria-label="下一張照片">
+                        <span>›</span>
+                    </button>
+                </div>
+                <div class="gallery-dots" aria-label="圖片導航"></div>
+            </div>
+        </section>
+
+        <section class="section info-section">
+            <div class="section-content info-grid">
+                <div class="map-info">
+                    <p class="section-eyebrow">LOCATION</p>
+                    <h2>Chianti, Tuscany</h2>
+                    <p class="villa-description">Villa 位於 Chianti 地區，是一棟建於 16 世紀<br>的建築，坐落在酒莊的葡萄園正中央</p>
+                    <ul>
+                        <li>從佛羅倫斯出發，車程約 30 分鐘</li>
+                        <li>建議租車前往</li>
+                    </ul>
+                    <div class="countdown-card">
+                        <p class="section-eyebrow">COUNTDOWN</p>
+                        <h2>期待與你相見</h2>
+                        <div class="countdown">
+                            <div><span id="days">00</span><small>Days</small></div>
+                            <div><span id="hours">00</span><small>Hours</small></div>
+                            <div><span id="minutes">00</span><small>Mins</small></div>
+                            <div><span id="seconds">00</span><small>Secs</small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-photos">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="托斯卡尼風景">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" alt="托斯卡尼風景">
+                </div>
+            </div>
+        </section>
+
+        <section id="rsvp" class="section rsvp-section">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="header">
+                        <h1>💕 誠摯邀請您參加我們的托斯卡尼之旅 💕</h1>
+                        <p class="subtitle">請填寫以下表單以確認出席</p>
+                    </div>
+
+                    <form id="weddingForm" class="wedding-form">
+                        <div class="form-section">
+                            <h2>基本資訊</h2>
+                            
+                            <div class="form-group">
+                                <label for="name">姓名 <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required placeholder="請輸入姓名">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">電子郵件 <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="請輸入您的電子郵件">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>出席確認</h2>
+                            
+                            <div class="form-group">
+                                <label>是否攜伴 <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="hasCompanion" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">是，我會攜伴</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="hasCompanion" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">否，我一個人參加</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="guestCountGroup" style="display: none;">
+                                <label for="guestCount">參加人數（包含自己） <span class="required">*</span></label>
+                                <select id="guestCount" name="guestCount">
+                                    <option value="">請選擇人數</option>
+                                    <option value="2">2 人</option>
+                                    <option value="3">3 人</option>
+                                    <option value="4">4 人</option>
+                                    <option value="5">5 人以上</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>是否與我們同住 Villa <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="stayAtVilla" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">是，我會與你們同住</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="stayAtVilla" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        <span class="radio-text">否，我會自行安排住宿</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>飲食偏好</h2>
+                            
+                            <div class="form-group">
+                                <label for="dietary">飲食需求</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="dietary" value="vegetarian">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">素食</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="dietary" value="vegan">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">全素</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="dietary" value="allergy">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">過敏（請在備註中說明）</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specialRequests">特殊需求或備註</label>
+                                <textarea id="specialRequests" name="specialRequests" rows="4" placeholder="如有任何特殊需求或過敏資訊，請在此填寫"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>Day 2 自費活動</h2>
+                            
+                            <div class="form-group">
+                                <label for="optionalActivities">可選自費活動，會依大家意願預訂和安排</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="optionalActivities" value="pasta-class">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Pasta Class</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="optionalActivities" value="tiramisu-class">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Tiramisu Class</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="optionalActivities" value="wine-tasting">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-text">Wine Tasting <a href="https://www.antinori.it/en/tenuta/estates-antinori/antinori-nel-chianti-classico-estate/" target="_blank" rel="noopener noreferrer" class="info-link">(Antinori 超美酒莊)</a></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>祝福留言</h2>
+                            
+                            <div class="form-group">
+                                <label for="message">給新人的祝福</label>
+                                <textarea id="message" name="message" rows="4" placeholder="寫下您對新人的祝福..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">送出表單</button>
+                            <button type="reset" class="btn btn-secondary">重新填寫</button>
+                        </div>
+                    </form>
+
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <div class="success-content">
+                            <span class="success-icon">✓</span>
+                            <h3>表單已成功送出！</h3>
+                            <p>感謝您的回覆，我們期待與您共度這個特別的日子！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Natasha & Leo Wedding</p>
+        <button class="btn-link" data-scroll-to="#home">Back to Top ↑</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
