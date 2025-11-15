@@ -21,9 +21,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 檢查是否已經詢問過（使用 localStorage）
     const musicPromptShown = localStorage.getItem('musicPromptShown');
+    const musicPreference = localStorage.getItem('musicPreference'); // 'play' 或 'skip'
     
+    // 如果用戶之前選擇播放，且音樂元素存在，嘗試自動播放
+    if (musicPreference === 'play' && backgroundMusic) {
+        // 延遲一點，確保頁面載入完成
+        setTimeout(() => {
+            playMusic().catch(error => {
+                // 如果自動播放被阻止，顯示控制按鈕讓用戶手動播放
+                console.log('自動播放被阻止，請點擊音樂控制按鈕播放');
+                if (musicToggle) {
+                    musicToggle.style.display = 'flex';
+                    updateMusicIcon();
+                }
+            });
+        }, 1000);
+    }
+    // 如果用戶之前選擇跳過，顯示控制按鈕但不播放
+    else if (musicPreference === 'skip' && musicToggle) {
+        musicToggle.style.display = 'flex';
+        updateMusicIcon();
+    }
     // 如果還沒詢問過，顯示詢問對話框
-    if (!musicPromptShown && backgroundMusic) {
+    else if (!musicPromptShown && backgroundMusic) {
         // 延遲一點顯示，讓頁面先載入
         setTimeout(() => {
             musicPrompt.style.display = 'flex';
@@ -34,14 +54,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function playMusic() {
         if (backgroundMusic) {
             backgroundMusic.volume = 0.3; // 設定音量為 30%
-            backgroundMusic.play().then(() => {
+            return backgroundMusic.play().then(() => {
                 musicEnabled = true;
                 musicToggle.style.display = 'flex';
                 updateMusicIcon();
             }).catch(error => {
                 console.log('音樂播放失敗:', error);
+                // 如果播放失敗，確保控制按鈕顯示
+                if (musicToggle) {
+                    musicToggle.style.display = 'flex';
+                    updateMusicIcon();
+                }
+                throw error; // 重新拋出錯誤以便調用者處理
             });
         }
+        return Promise.resolve();
     }
 
     // 暫停音樂
@@ -74,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playMusicBtn.addEventListener('click', function() {
             musicPrompt.style.display = 'none';
             localStorage.setItem('musicPromptShown', 'true');
+            localStorage.setItem('musicPreference', 'play');
             playMusic();
         });
     }
@@ -83,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         skipMusicBtn.addEventListener('click', function() {
             musicPrompt.style.display = 'none';
             localStorage.setItem('musicPromptShown', 'true');
+            localStorage.setItem('musicPreference', 'skip');
             musicToggle.style.display = 'flex'; // 仍然顯示控制按鈕，讓用戶之後可以開啟
             updateMusicIcon();
         });
